@@ -1,2 +1,1 @@
-Monty is an interpreter for the Monty language, a stack-based programming language.
-... content ...
+this repo contains monty tasks

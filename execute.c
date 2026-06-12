@@ -8,7 +8,7 @@
  * @line_number: line number in the file
  */
 void execute_opcode(char *opcode, char *arg, stack_t **stack,
-unsigned int line_number)
+    unsigned int line_number)
 {
 if (strcmp(opcode, "push") == 0)
 {

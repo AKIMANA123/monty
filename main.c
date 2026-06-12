@@ -1,6 +1,45 @@
 #include "monty.h"
 
 /**
+ * open_file - opens the bytecode file
+ * @filename: name of the file to open
+ *
+ * Return: file pointer
+ */
+FILE *open_file(char *filename)
+{
+FILE *file;
+
+file = fopen(filename, "r");
+if (file == NULL)
+{
+fprintf(stderr, "Error: Can't open file %s\n", filename);
+exit(EXIT_FAILURE);
+}
+return (file);
+}
+
+/**
+ * read_and_execute - reads and executes lines from file
+ * @file: file pointer
+ * @stack: double pointer to the stack
+ */
+void read_and_execute(FILE *file, stack_t **stack)
+{
+char *line = NULL;
+size_t len = 0;
+ssize_t read;
+unsigned int line_number = 0;
+
+while ((read = getline(&line, &len, file)) != -1)
+{
+line_number++;
+process_line(line, line_number, stack);
+}
+free(line);
+}
+
+/**
  * main - entry point for Monty interpreter
  * @argc: number of arguments
  * @argv: array of arguments
@@ -10,11 +49,6 @@
 int main(int argc, char *argv[])
 {
 FILE *file;
-char *line = NULL;
-size_t len = 0;
-ssize_t read;
-unsigned int line_number = 0;
-char *opcode, *arg;
 stack_t *stack = NULL;
 
 if (argc != 2)
@@ -23,41 +57,8 @@ fprintf(stderr, "USAGE: monty file\n");
 exit(EXIT_FAILURE);
 }
 
-file = fopen(argv[1], "r");
-if (file == NULL)
-{
-fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-exit(EXIT_FAILURE);
-}
-
-while ((read = getline(&line, &len, file)) != -1)
-{
-line_number++;
-opcode = strtok(line, " \t\n");
-if (opcode == NULL || opcode[0] == '#')
-continue;
-
-arg = strtok(NULL, " \t\n");
-
-if (strcmp(opcode, "push") == 0)
-{
-push(&stack, line_number, arg);
-}
-else if (strcmp(opcode, "pall") == 0)
-{
-pall(&stack, line_number);
-}
-else
-{
-fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
-free(line);
-fclose(file);
-free_stack(stack);
-exit(EXIT_FAILURE);
-}
-}
-
-free(line);
+file = open_file(argv[1]);
+read_and_execute(file, &stack);
 fclose(file);
 free_stack(stack);
 return (EXIT_SUCCESS);

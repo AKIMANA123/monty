@@ -7,7 +7,8 @@
  * @stack: double pointer to the stack
  * @line_number: line number in the file
  */
-void execute_opcode(char *opcode, char *arg, stack_t **stack, unsigned int line_number)
+void execute_opcode(char *opcode, char *arg, stack_t **stack,
+unsigned int line_number)
 {
 if (strcmp(opcode, "push") == 0)
 {
@@ -35,7 +36,8 @@ add(stack, line_number);
 }
 else
 {
-fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
+fprintf(stderr, "L%u: unknown instruction %s\n",
+line_number, opcode);
 free_stack(*stack);
 exit(EXIT_FAILURE);
 }

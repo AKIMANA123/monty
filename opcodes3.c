@@ -53,6 +53,7 @@ fprintf(stderr, "L%u: can't sub, stack too short\n", line_number);
 free_stack(*stack);
 exit(EXIT_FAILURE);
 }
+
 result = (*stack)->next->n - (*stack)->n;
 pop(stack, line_number);
 (*stack)->n = result;

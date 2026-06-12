@@ -22,12 +22,12 @@ struct stack_s *next;
 /* Function prototypes */
 void push(stack_t **stack, unsigned int line_number, char *arg);
 void pall(stack_t **stack, unsigned int line_number);
-void free_stack(stack_t *stack);
-int is_integer(char *str);
-
-#endif /* MONTY_H */
 void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
+void free_stack(stack_t *stack);
+int is_integer(char *str);
+void execute_opcode(char *opcode, char *arg, stack_t **stack, unsigned int line_number);
 
+#endif /* MONTY_H */

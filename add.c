@@ -7,6 +7,7 @@
  */
 void add(stack_t **stack, unsigned int line_number)
 {
+stack_t *temp;
 int sum;
 
 if (*stack == NULL || (*stack)->next == NULL)
@@ -17,6 +18,13 @@ exit(EXIT_FAILURE);
 }
 
 sum = (*stack)->n + (*stack)->next->n;
-pop(stack, line_number);
+
+/* Remove top element */
+temp = *stack;
+*stack = (*stack)->next;
+(*stack)->prev = NULL;
+free(temp);
+
+/* Set the new top to the sum */
 (*stack)->n = sum;
 }

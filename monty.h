@@ -28,3 +28,8 @@ FILE *open_file(char *filename);
 void read_and_execute(FILE *file, stack_t **stack);
 
 #endif
+void nop(stack_t **stack, unsigned int line_number);
+void sub(stack_t **stack, unsigned int line_number);
+void mul(stack_t **stack, unsigned int line_number);
+void div_op(stack_t **stack, unsigned int line_number);
+void mod(stack_t **stack, unsigned int line_number);

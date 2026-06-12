@@ -1,12 +1,5 @@
 #include "monty.h"
 
-/**
- * execute_opcode - executes the given opcode
- * @opcode: opcode to execute
- * @arg: argument for the opcode
- * @stack: double pointer to the stack
- * @line_number: line number in the file
- */
 void execute_opcode(char *opcode, char *arg, stack_t **stack,
 unsigned int line_number)
 {
@@ -33,6 +26,26 @@ swap(stack, line_number);
 else if (strcmp(opcode, "add") == 0)
 {
 add(stack, line_number);
+}
+else if (strcmp(opcode, "nop") == 0)
+{
+nop(stack, line_number);
+}
+else if (strcmp(opcode, "sub") == 0)
+{
+sub(stack, line_number);
+}
+else if (strcmp(opcode, "mul") == 0)
+{
+mul(stack, line_number);
+}
+else if (strcmp(opcode, "div") == 0)
+{
+div_op(stack, line_number);
+}
+else if (strcmp(opcode, "mod") == 0)
+{
+mod(stack, line_number);
 }
 else
 {

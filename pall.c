@@ -3,7 +3,7 @@
 /**
  * pall - prints all values on the stack
  * @stack: double pointer to the stack
- * @line_number: line number in the file (unused)
+ * @line_number: line number in the file
  */
 void pall(stack_t **stack, unsigned int line_number)
 {

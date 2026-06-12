@@ -38,7 +38,23 @@ if (opcode == NULL || opcode[0] == '#')
 continue;
 
 arg = strtok(NULL, " \t\n");
-execute_opcode(opcode, arg, &stack, line_number);
+
+if (strcmp(opcode, "push") == 0)
+{
+push(&stack, line_number, arg);
+}
+else if (strcmp(opcode, "pall") == 0)
+{
+pall(&stack, line_number);
+}
+else
+{
+fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
+free(line);
+fclose(file);
+free_stack(stack);
+exit(EXIT_FAILURE);
+}
 }
 
 free(line);

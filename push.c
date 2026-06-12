@@ -25,23 +25,29 @@ return (1);
 }
 
 /**
- * push_with_arg - pushes an element to the stack with given argument
+ * push - pushes an element to the stack
  * @stack: double pointer to the stack
- * @arg: argument value
  * @line_number: line number in the file
+ * @arg: argument value
  */
-void push_with_arg(stack_t **stack, char *arg, unsigned int line_number)
+void push(stack_t **stack, unsigned int line_number, char *arg)
 {
 stack_t *new_node;
 int n;
 
-(void)line_number;
+if (arg == NULL || !is_integer(arg))
+{
+fprintf(stderr, "L%u: usage: push integer\n", line_number);
+free_stack(*stack);
+exit(EXIT_FAILURE);
+}
 
 n = atoi(arg);
 new_node = malloc(sizeof(stack_t));
 if (new_node == NULL)
 {
 fprintf(stderr, "Error: malloc failed\n");
+free_stack(*stack);
 exit(EXIT_FAILURE);
 }
 

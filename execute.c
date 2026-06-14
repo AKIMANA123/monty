@@ -27,9 +27,21 @@ else if (strcmp(opcode, "add") == 0)
 {
 add(stack, line_number);
 }
+else if (strcmp(opcode, "nop") == 0)
+{
+nop(stack, line_number);
+}
 else if (strcmp(opcode, "sub") == 0)
 {
 sub(stack, line_number);
+}
+else if (strcmp(opcode, "div") == 0)
+{
+div_op(stack, line_number);
+}
+else if (strcmp(opcode, "mul") == 0)
+{
+mul(stack, line_number);
 }
 else if (strcmp(opcode, "mod") == 0)
 {

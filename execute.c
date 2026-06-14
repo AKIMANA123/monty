@@ -59,6 +59,10 @@ else if (strcmp(opcode, "rotl") == 0)
 {
 rotl(stack, line_number);
 }
+else if (strcmp(opcode, "rotr") == 0)
+{
+rotr(stack, line_number);
+}
 else
 {
 fprintf(stderr, "L%u: unknown instruction %s\n",

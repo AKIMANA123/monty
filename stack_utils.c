@@ -33,9 +33,20 @@ return (1);
 void process_line(char *line, unsigned int line_number, stack_t **stack)
 {
 char *opcode, *arg;
+char *line_copy;
+int i = 0;
 
-opcode = strtok(line, " \t\n");
-if (opcode == NULL || opcode[0] == '#')
+/* Skip leading spaces/tabs */
+while (line[i] == ' ' || line[i] == '\t')
+i++;
+
+/* Check if line is a comment (starts with #) */
+if (line[i] == '#')
+return;
+
+line_copy = line + i;
+opcode = strtok(line_copy, " \t\n");
+if (opcode == NULL)
 return;
 
 arg = strtok(NULL, " \t\n");
